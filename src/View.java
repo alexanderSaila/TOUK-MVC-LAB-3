@@ -34,8 +34,7 @@ public class View extends JFrame {
     }
     
     public String getEncryptionKey() {
-        // get the encryption key from the corresponding text field and return it
-    	return "";
+    	return encryptionKeyTextField.getText();
     }
 
     
