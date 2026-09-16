@@ -1,11 +1,11 @@
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class EncryptionEngineTest {
 
     // Testing using only 1 as key for encryption and decryption
     @Test
-    void testSmallKey(){
+    public void testSmallKey(){
         EncryptionEngine engine = new EncryptionEngine(null);
         engine.setEncryptionKey(1);
 
@@ -18,7 +18,7 @@ public class EncryptionEngineTest {
 
     // Testing using keys larger than 26
     @Test
-    void testLargeKey(){
+    public void testLargeKey(){
         EncryptionEngine engine = new EncryptionEngine(null);
         engine.setEncryptionKey(54);
 
@@ -31,7 +31,7 @@ public class EncryptionEngineTest {
 
     // Testing using negative keys
     @Test
-    void testNegativeKey(){
+    public void testNegativeKey(){
         EncryptionEngine engine = new EncryptionEngine(null);
         engine.setEncryptionKey(-10);
 
@@ -44,7 +44,7 @@ public class EncryptionEngineTest {
 
     // Testing using spaces in input
     @Test
-    void testInputsWithSpace(){
+    public void testInputsWithSpace(){
         EncryptionEngine engine = new EncryptionEngine(null);
         engine.setEncryptionKey(10);
 
@@ -57,7 +57,7 @@ public class EncryptionEngineTest {
 
     // Test with illegal entries
     @Test
-    void testIllegalEntries(){
+    public void testIllegalEntries(){
         EncryptionEngine engine = new EncryptionEngine(null);
         engine.setEncryptionKey(1);
 
