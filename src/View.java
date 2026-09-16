@@ -79,14 +79,14 @@ public class View extends JFrame {
 		encryptButton.addActionListener(new ActionListener() {
 			@Override
         	public void actionPerformed(ActionEvent e) {
-				// call corresponding controller method
+				controller.encryptButtonClicked();
 			}
 		});
         decryptButton = new JButton("decrypt");
 		decryptButton.addActionListener(new ActionListener() {
 			@Override
         	public void actionPerformed(ActionEvent e) {
-				// call corresponding controller method
+				controller.decryptButtonClicked();
 			}
 		});
         
