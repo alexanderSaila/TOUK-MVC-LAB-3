@@ -1,6 +1,5 @@
-public class Main {
+public class Launcher {
     public static void main(String[] args) {
         Controller myController = new Controller();
-        View myView = new View(myController);
     }
 }
