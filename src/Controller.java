@@ -24,6 +24,7 @@ public class Controller {
             view.setOutputText("Invalid Key.");
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
+            view.setOutputText(e.getMessage());
         }
     }
 
