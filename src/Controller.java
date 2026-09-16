@@ -12,7 +12,19 @@ public class Controller {
     }
 
     public void encryptButtonClicked(){
+        try{
+            int encryptionKey = Integer.parseInt(view.getEncryptionKey());
+            encryptionEngine.setEncryptionKey(encryptionKey);
+            System.out.println("Encryption key set to: " + encryptionKey);
 
+            String encryptedString = encryptionEngine.encrypt(view.getInputText());
+            view.setOutputText(encryptedString);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Key Entry.");
+            view.setOutputText("Invalid Key.");
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void decryptButtonClicked(){
