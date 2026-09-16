@@ -28,6 +28,18 @@ public class Controller {
     }
 
     public void decryptButtonClicked(){
+        try{
+            int encryptionKey = Integer.parseInt(view.getEncryptionKey());
+            encryptionEngine.setEncryptionKey(encryptionKey);
+            System.out.println("Encryption key set to: " + encryptionKey);
 
+            String decryptedString = encryptionEngine.decrypt(view.getInputText());
+            view.setOutputText(decryptedString);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid Key Entry.");
+            view.setOutputText("Invalid Key.");
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
