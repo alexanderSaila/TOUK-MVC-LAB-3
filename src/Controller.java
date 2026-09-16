@@ -13,7 +13,7 @@ public class Controller {
 
     public void encryptButtonClicked(){
         try{
-            int encryptionKey = Integer.parseInt(view.getEncryptionKey());
+            int encryptionKey = Integer.parseInt(view.getEncryptionKey().trim());
             encryptionEngine.setEncryptionKey(encryptionKey);
             System.out.println("Encryption key set to: " + encryptionKey);
 
@@ -29,7 +29,7 @@ public class Controller {
 
     public void decryptButtonClicked(){
         try{
-            int encryptionKey = Integer.parseInt(view.getEncryptionKey());
+            int encryptionKey = Integer.parseInt(view.getEncryptionKey().trim());
             encryptionEngine.setEncryptionKey(encryptionKey);
             System.out.println("Encryption key set to: " + encryptionKey);
 
