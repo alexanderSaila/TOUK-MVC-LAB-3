@@ -38,7 +38,23 @@ public class EncryptionEngine {
     }
 
     public String decrypt(String inputText){
-        return null;
+        if(inputText.matches("^[a-zA-Z ]*$")){
+            StringBuilder encryptedString = new StringBuilder();
+            for(char x : inputText.toCharArray()){
+                char encryptedChar = ' ';
+                if(x >= 'A' && x <= 'Z'){
+                    encryptedChar = (char) ('A' + ((x - 'A') + (-encryptionKey % 26) +26 )%26);
+                }
+                else if(x >= 'a' && x <= 'z'){
+                    encryptedChar = (char) ('a' + ((x - 'a') + (-encryptionKey % 26) +26 )%26);
+                }
+                encryptedString.append(encryptedChar);
+            }
+            return encryptedString.toString();
+        }
+        else {
+            throw new IllegalArgumentException("Invalid characters found!");
+        }
     }
 }
 
