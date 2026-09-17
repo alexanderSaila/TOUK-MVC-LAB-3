@@ -5,42 +5,51 @@ public class Controller {
 
     View view;
     EncryptionEngine encryptionEngine;
+    InputValidator inputValidator;
 
     public Controller(){
         encryptionEngine = new EncryptionEngine(this);
+        inputValidator = new InputValidator(this);
         view = new View(this);
     }
 
     public void encryptButtonClicked(){
-        try{
-            int encryptionKey = Integer.parseInt(view.getEncryptionKey().trim());
-            encryptionEngine.setEncryptionKey(encryptionKey);
-            System.out.println("Encryption key set to: " + encryptionKey);
+        String keyString = view.getEncryptionKey().trim();
+        String inputString = view.getInputText();
 
-            String encryptedString = encryptionEngine.encrypt(view.getInputText());
-            view.setOutputText(encryptedString);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid Key Entry.");
+        if(inputValidator.checkValidKey(keyString)){
+            encryptionEngine.setEncryptionKey(Integer.parseInt(keyString));
+        }
+        else {
             view.setOutputText("Invalid Key.");
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            view.setOutputText(e.getMessage());
+            return;
+        }
+
+        if(inputValidator.checkValidStringInput(inputString)){
+            view.setOutputText(encryptionEngine.encrypt(inputString));
+        }
+        else {
+            view.setOutputText("Invalid Key.");
         }
     }
 
     public void decryptButtonClicked(){
-        try{
-            int encryptionKey = Integer.parseInt(view.getEncryptionKey().trim());
-            encryptionEngine.setEncryptionKey(encryptionKey);
-            System.out.println("Encryption key set to: " + encryptionKey);
+        String keyString = view.getEncryptionKey().trim();
+        String inputString = view.getInputText();
 
-            String decryptedString = encryptionEngine.decrypt(view.getInputText());
-            view.setOutputText(decryptedString);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid Key Entry.");
+        if(inputValidator.checkValidKey(keyString)){
+            encryptionEngine.setEncryptionKey(Integer.parseInt(keyString));
+        }
+        else {
             view.setOutputText("Invalid Key.");
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            return;
+        }
+
+        if(inputValidator.checkValidStringInput(inputString)){
+            view.setOutputText(encryptionEngine.decrypt(inputString));
+        }
+        else {
+            view.setOutputText("Invalid Key.");
         }
     }
 }

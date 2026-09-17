@@ -17,44 +17,32 @@ public class EncryptionEngine {
         return encryptionKey;
     }
 
-    public String encrypt(String inputText){
-        if(inputText.matches("^[a-zA-Z ]*$")){
-            StringBuilder encryptedString = new StringBuilder();
-            for(char x : inputText.toCharArray()){
-                char encryptedChar = ' ';
-                if(x >= 'A' && x <= 'Z'){
-                    encryptedChar = (char) ('A' + ((x - 'A') + (encryptionKey % 26) +26 )%26);
-                }
-                else if(x >= 'a' && x <= 'z'){
-                    encryptedChar = (char) ('a' + ((x - 'a') + (encryptionKey % 26) +26 )%26);
-                }
-                encryptedString.append(encryptedChar);
+    public String encrypt(String inputText) {
+        StringBuilder encryptedString = new StringBuilder();
+        for (char x : inputText.toCharArray()) {
+            char encryptedChar = ' ';
+            if (x >= 'A' && x <= 'Z') {
+                encryptedChar = (char) ('A' + ((x - 'A') + (encryptionKey % 26) + 26) % 26);
+            } else if (x >= 'a' && x <= 'z') {
+                encryptedChar = (char) ('a' + ((x - 'a') + (encryptionKey % 26) + 26) % 26);
             }
-            return encryptedString.toString();
+            encryptedString.append(encryptedChar);
         }
-        else {
-            throw new IllegalArgumentException("Invalid characters found!");
-        }
+        return encryptedString.toString();
     }
 
     public String decrypt(String inputText){
-        if(inputText.matches("^[a-zA-Z ]*$")){
-            StringBuilder encryptedString = new StringBuilder();
-            for(char x : inputText.toCharArray()){
-                char encryptedChar = ' ';
-                if(x >= 'A' && x <= 'Z'){
-                    encryptedChar = (char) ('A' + ((x - 'A') + (-encryptionKey % 26) +26 )%26);
-                }
-                else if(x >= 'a' && x <= 'z'){
-                    encryptedChar = (char) ('a' + ((x - 'a') + (-encryptionKey % 26) +26 )%26);
-                }
-                encryptedString.append(encryptedChar);
+        StringBuilder encryptedString = new StringBuilder();
+        for (char x : inputText.toCharArray()) {
+            char encryptedChar = ' ';
+            if (x >= 'A' && x <= 'Z') {
+                encryptedChar = (char) ('A' + ((x - 'A') + (-encryptionKey % 26) + 26) % 26);
+            } else if (x >= 'a' && x <= 'z') {
+                encryptedChar = (char) ('a' + ((x - 'a') + (-encryptionKey % 26) + 26) % 26);
             }
-            return encryptedString.toString();
+            encryptedString.append(encryptedChar);
         }
-        else {
-            throw new IllegalArgumentException("Invalid characters found!");
-        }
+        return encryptedString.toString();
     }
 }
 

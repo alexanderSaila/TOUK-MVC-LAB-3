@@ -33,7 +33,7 @@ public class EncryptionEngineTest {
     @Test
     public void testNegativeKey(){
         EncryptionEngine engine = new EncryptionEngine(null);
-        engine.setEncryptionKey(-10);
+        engine.setEncryptionKey(-36);
 
         String encrypt = engine.encrypt("a");
         String decrypt = engine.decrypt("a");
@@ -58,14 +58,12 @@ public class EncryptionEngineTest {
     // Test with illegal entries
     @Test
     public void testIllegalEntries(){
-        EncryptionEngine engine = new EncryptionEngine(null);
-        engine.setEncryptionKey(1);
+        InputValidator validator = new InputValidator(null);
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            engine.encrypt("ABC!!");
-        });
-        assertThrows(IllegalArgumentException.class, () -> {
-            engine.decrypt("@ABC,.");
-        });
+        assertFalse(validator.checkValidStringInput("ABC!!"));
+        assertFalse(validator.checkValidKey("K"));
+
+        assertTrue(validator.checkValidStringInput("ABC DEF"));
+        assertTrue(validator.checkValidKey("5"));
     }
 }
